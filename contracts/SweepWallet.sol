@@ -15,10 +15,16 @@ import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 contract SweepWallet is Initializable, Ownable {
     using Address for address payable;
 
+    // Constructor for the implementation contract - sets a dummy owner
+    constructor() Ownable(msg.sender) {
+        // Disable initializers on the implementation contract
+        _disableInitializers();
+    }
+
     // This function is called *once* by the factory right after deployment.
     function initialize(address _newOwner) public initializer {
         // The "owner" of this wallet is your main backend sweeper bot
-        transferOwnership(_newOwner);
+        _transferOwnership(_newOwner);
     }
 
     /**

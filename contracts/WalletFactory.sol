@@ -34,7 +34,7 @@ contract WalletFactory {
         require(msg.sender == sweeper, "Factory: Not sweeper");
 
         // 1. Deploy the clone deterministically
-        address wallet = Clones.cloneDeterministic(implementation, _salt);
+        address payable wallet = payable(Clones.cloneDeterministic(implementation, _salt));
 
         // 2. Initialize the new clone, setting its owner
         SweepWallet(wallet).initialize(sweeper);
