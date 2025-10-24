@@ -29,7 +29,7 @@ contract WalletFactory {
      * @notice This is the "magic" function.
      * It deploys the wallet and sweeps its funds in ONE transaction.
      */
-    function deployAndSweep(bytes32 _salt, address _tokenAddress, address _to) external {
+    function deployAndSweep(bytes32 _salt, address _tokenAddress, address payable _to) external {
         // Only your main sweeper bot can call this
         require(msg.sender == sweeper, "Factory: Not sweeper");
 
@@ -40,7 +40,13 @@ contract WalletFactory {
         SweepWallet(wallet).initialize(sweeper);
 
         // 3. Tell the new wallet to sweep its funds
-        SweepWallet(wallet).sweep(_tokenAddress, _to);
+        if (_tokenAddress == address(0)) {
+            // Sweep ETH
+            SweepWallet(wallet).sweepETH(_to);
+        } else {
+            // Sweep ERC20 token
+            SweepWallet(wallet).sweep(_tokenAddress, _to);
+        }
 
         emit WalletCreated(wallet, _salt);
     }

@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     WalletFactory: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0xccA9728291bC98ff4F97EF57Be3466227b0eb06C",
       abi: [
         {
           inputs: [
@@ -73,7 +73,7 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "address",
+              internalType: "address payable",
               name: "_to",
               type: "address",
             },
@@ -134,7 +134,7 @@ const deployedContracts = {
   },
   11155111: {
     WalletFactory: {
-      address: "0xFd623280520C401533629D91c95B28576282263c",
+      address: "0x252C43906431b18f4330bB0E71400497ba201884",
       abi: [
         {
           inputs: [
@@ -200,7 +200,7 @@ const deployedContracts = {
               type: "address",
             },
             {
-              internalType: "address",
+              internalType: "address payable",
               name: "_to",
               type: "address",
             },
